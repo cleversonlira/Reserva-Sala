@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+
+.container {
+	
+}
+
+body {
+	padding-top: 15px;
+	background: rgb(52, 149, 209);	
+}
+
+.margem {
+	margin: 8px;
+}
+
+.fundo {
+	background-color: grey;
+}
+
+.altura {
+	height: 100%;
+}
+
+.branco {
+	background-color: white;
+	border-radius: 10px 30px;
+	padding: 20px;
+}
+
+.form-login {
+	max-width: 480px;
+	margin: auto;
+}
+
+form img {
+	width: 450px;
+}
+
+.card {
+	box-shadow: 3px 6px 8px 3px rgba(100, 100, 100, 0.3);
+}
+
+textarea {
+	height: 70px;
+	resize: none;
+}
+
+#horainicial {
+	width: 30%;
+}
+
+#horafinal {
+	width: 30%;
+}
