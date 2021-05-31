@@ -29,7 +29,7 @@
 				<td>${reuniao.sala}</td>
 				<td>${reuniao.titulo}</td>
 				<td>
-					<a href="edit?id=${reuniao.id}">
+					<a href="edit?id=${reuniao.id}" class="btn btn-editar">
 						<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 width="15" height="20" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;"
 							 xml:space="preserve">
@@ -44,7 +44,7 @@
 				</td>
 				<td>
 					<div class="modal-position">								
-						<a href="#modal" class="">
+						<a href="#modal" class="btn btn-remover">
 					        <svg height="25" width="15" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 					            <g>

@@ -102,11 +102,9 @@ input, select, textarea {
     margin: 10px;
     padding: 10px;
 }
-table {
-	font-size: 0.8rem;
-}
 
 table {
+  font-size: 0.8rem;
   text-align: center;
   font-family: Montserrat, Arial, sans-serif;
   background:#fafafa ;
@@ -122,18 +120,47 @@ td {
 	text-align: center;
 }
 
+.btn {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    padding: 0.5rem;    
+    color: #ffffff;
+    justify-content: center;
+    border-radius: 4px;
+    align-items: center;
+}
+
+.btn-editar {
+	background-color: #4DA6EB;
+}
+
+.btn-editar:hover {
+	background-color: #0077c6;
+}
+
+.btn-editar:active {
+	background-color: #3B94D4;
+}
+
+.btn-remover {
+	background-color: #ef476f;
+}
+
+.btn-remover:hover {
+    background-color:  #F52B4E;
+}
+
+.btn-remover:active {
+    background-color:  #ef476f;
+}
+
 a > svg {
-	fill: #5c5c5c;
-	text-align: center;
+	fill: #000000;
 }
 
 td a {
 	border: none;
-}
-
-svg:hover {
-	fill: #0077c6;
-	border-color: #0077c6;	
 }
 
 tr > th {
