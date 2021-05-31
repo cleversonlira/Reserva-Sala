@@ -45,6 +45,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 	}
 
+	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.
 	private void delete(HttpServletRequest req, HttpServletResponse resp) {
 		Reuniao reuniao = new Reuniao();
 
