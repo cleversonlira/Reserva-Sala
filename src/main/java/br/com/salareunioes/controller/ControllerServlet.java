@@ -28,7 +28,9 @@ public class ControllerServlet extends HttpServlet {
 	//e conforme a action do form, eu trato a requisicao
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//pega o action do form
 		String action = req.getServletPath();
+		//verifica a acao a ser tomada e chama o metodo.
 		if (action.equals("/agendamento")) {
 			agendarReuniao(req, resp);
 			resp.sendRedirect("agendamento.jsp");
