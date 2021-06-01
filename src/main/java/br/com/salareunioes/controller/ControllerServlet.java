@@ -38,7 +38,6 @@ public class ControllerServlet extends HttpServlet {
 			listReuniao(req, resp);
 		} else if (action.equals("/apply-editing")) {
 			applyEditing(req, resp);
-			resp.sendRedirect("agendamento.jsp");
 		} else if (action.equals("/delete")) {
 			delete(req, resp);
 			resp.sendRedirect("agendamento.jsp");
@@ -93,9 +92,10 @@ public class ControllerServlet extends HttpServlet {
 	}
 	
 	//Aplica a edicao da Reuniao no banco usando o ID, após criar uma Reuniao com os atributos atualizados.
-	private void applyEditing(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+	private void applyEditing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		Reuniao reuniao = new Reuniao();
+		boolean updated = false;
 
 		reuniao.setId(Integer.parseInt(req.getParameter("id")));
 		reuniao.setData(LocalDate.now().parse(req.getParameter("data")));
@@ -106,8 +106,11 @@ public class ControllerServlet extends HttpServlet {
 		reuniao.setSolicitante(req.getParameter("solicitante"));
 		reuniao.setTitulo(req.getParameter("titulo"));
 		reuniao.setObservacoes(req.getParameter("observacoes"));
+
+		if (new ReuniaoDAO().update(reuniao)) updated = true;
 		
-		new ReuniaoDAO().update(reuniao);
-		System.out.println("E não é que atualizou? ^^");
+		req.setAttribute("updated", updated);
+		RequestDispatcher rd = req.getRequestDispatcher("editar.jsp");
+		rd.forward(req, resp);
 	}
 }

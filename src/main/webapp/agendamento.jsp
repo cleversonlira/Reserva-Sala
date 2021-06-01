@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/agendamento.css">
     <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/messages.css">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <title>Agendamento</title>

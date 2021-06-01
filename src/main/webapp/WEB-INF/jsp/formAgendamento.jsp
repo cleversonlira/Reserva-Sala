@@ -52,4 +52,4 @@
 	</select>
 	
 	<label for="observacoes">Observações:</label>
-	<textarea name="observacoes" id="observacoes" cols="30" rows="10">${requestScope.observacoes}</textarea>
+	<textarea name="observacoes" id="observacoes" maxlength="255" cols="30" rows="10">${requestScope.observacoes}</textarea>

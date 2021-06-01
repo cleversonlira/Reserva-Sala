@@ -84,7 +84,8 @@ public class ReuniaoDAO {
 	}
 
 	//Metodo de edicao de Reuniao, recebeo parametro Reuniao e atualiza a reuniao que contém o mesmo ID lá no banco.
-	public void update(Reuniao reuniao) {
+	public boolean update(Reuniao reuniao) {
+		boolean updated = false;
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("UPDATE Reuniao "
 						+ "SET titulo = ?, solicitante = ?, dataReuniao = ?, horaInicio = ?, horaFim = ?, "
@@ -103,9 +104,12 @@ public class ReuniaoDAO {
 			stmt.setInt(9, reuniao.getId());
 			
 			stmt.executeUpdate();
+			
+			updated = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return updated;
 	}
 
 	//Metodo que seleciona apenas uma reuniao pelo ID, para que possa ser editada. E retorna a reuniao encontrada.
