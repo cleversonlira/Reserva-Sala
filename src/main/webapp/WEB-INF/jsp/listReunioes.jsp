@@ -44,7 +44,7 @@
 				</td>
 				<td>
 					<div class="modal-position">								
-						<a href="#modal" class="btn btn-remover">
+						<a href="#modal${reuniao.id}" class="btn btn-remover">
 					        <svg height="25" width="15" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 					            <g>
@@ -60,7 +60,7 @@
 					            </g>
 					        </svg>
 					    </a>
-					    <div id=modal class="modal">
+					    <div id="modal${reuniao.id}" class="modal">
 					        <div class="modal-content">
 					            <h2 class="modal-title">Deletar permanentemente</h2>
 					                <p modal-description>
