@@ -33,7 +33,6 @@ public class ControllerServlet extends HttpServlet {
 		//verifica a acao a ser tomada e chama o metodo.
 		if (action.equals("/agendamento")) {
 			agendarReuniao(req, resp);
-			resp.sendRedirect("agendamento.jsp");
 		} else if (action.equals("/edit")) {
 			listReuniao(req, resp);
 		} else if (action.equals("/apply-editing")) {
@@ -54,11 +53,12 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	//Pega os dados da requisicao de Agendamento, cria uma nova reuniao com os dados que vieram do form e insere no banco.
-	private void agendarReuniao(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
+	private void agendarReuniao(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Resolve o problema de caracteres especiais
 		req.setCharacterEncoding("UTF-8");
 		
 		Reuniao reuniao = new Reuniao();
+		boolean created;
 
 		reuniao.setData(LocalDate.now().parse(req.getParameter("data")));
 		reuniao.setInicio(req.getParameter("inicio"));
@@ -69,7 +69,17 @@ public class ControllerServlet extends HttpServlet {
 		reuniao.setTitulo(req.getParameter("titulo"));
 		reuniao.setObservacoes(req.getParameter("observacoes"));
 		
-		new ReuniaoDAO().insert(reuniao);
+		if (new ReuniaoDAO().insert(reuniao)) {
+			created = true;
+		} else {
+			created = false;
+		}
+		
+		req.setAttribute("created", created);
+		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
+		rd.forward(req, resp);
+		System.out.println(created);
+		
 	}
 
 	//Metodo responsavel por buscar uma reuniao especifica ao ser acionado o Editar. 
@@ -95,7 +105,7 @@ public class ControllerServlet extends HttpServlet {
 	private void applyEditing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		Reuniao reuniao = new Reuniao();
-		Boolean updated = null;
+		boolean updated;
 
 		reuniao.setId(Integer.parseInt(req.getParameter("id")));
 		reuniao.setData(LocalDate.now().parse(req.getParameter("data")));

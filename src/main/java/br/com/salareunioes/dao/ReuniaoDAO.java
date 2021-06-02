@@ -45,12 +45,13 @@ public class ReuniaoDAO {
 	}
 
 	//Metodo sem retorno, que insere uma Reuniao no banco.
-	public void insert(Reuniao reuniao) {
+	public boolean insert(Reuniao reuniao) {
+		boolean insert = false;
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("INSERT INTO "
 						+ "Reuniao(titulo, solicitante, dataReuniao, horaInicio, horaFim, organizador, id_sala, observacoes)"
-						+ "VALUES(?,?,?,?,?,?,?,?)")
-		;) {
+						+ "VALUES(?,?,?,?,?,?,?,?)");
+		) {
 			stmt.setString(1, reuniao.getTitulo());
 			stmt.setString(2, reuniao.getSolicitante());
 			stmt.setDate(3, Date.valueOf(reuniao.getData()));
@@ -61,9 +62,11 @@ public class ReuniaoDAO {
 			stmt.setString(8, reuniao.getObservacoes());
 			
 			stmt.execute();
+			insert = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return insert;
 	}
 
 	//Falta implementar

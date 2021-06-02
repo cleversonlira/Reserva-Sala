@@ -15,37 +15,59 @@
 			}, 1350);
 			setTimeout( function () {
 				document.getElementById("agendamento").click();
-			}, 1355);
+			}, 1800);
 		</script>
 	</c:when>
 	<c:when test="${requestScope.updated == false}">	
 		<div id="message-update-error" class="message">
 			<div class="message-content-error">
-				<h4 class="message-title">Ocorreu um erro ao tentar alterar esta reserva.</h4>
+				<h4 class="message-title">Ocorreu um erro ao alterar esta reserva.</h4>
 			</div>
 		</div>
 		<a id="agendamento" href="agendamento.jsp"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-update-error").style.visibility = "hidden";		
-			}, 3000);
+			}, 1500);
 			setTimeout( function () {
 				document.getElementById("agendamento").click();
-			}, 3150);
-		</script>
+			}, 1800);
+		</script>	
 	</c:when>
 </c:choose>
 
 <!-- Mensage de sucesso após realizar cadastro (Create/Insert) -->
-<%-- <c:if test="${requestScope.updated == true requestScope.updated == false}">
-	<div id="message-update-sucess" class="message">
-		<div class="message-content">
-			<h4 class="message-title">Reserva alterada com sucesso.</h4>
+<c:choose>
+	<c:when test="${requestScope.created == true}">	
+		<div id="message-update-sucess" class="message">
+			<div class="message-content-sucess">
+				<h4 class="message-title">Reserva criada com sucesso.</h4>
+			</div>
 		</div>
-	</div>
-	<script>
-		var fechaModal = setTimeout( function () {
-			document.getElementById("message-update-sucess").style.visibility = "hidden";		
-		}, 1350);
-	</script>
-</c:if> --%>
+		<a id="agendamento" href="agendamento.jsp"></a>
+		<script>
+			setTimeout( function () {
+				document.getElementById("message-created-sucess").style.visibility = "hidden";		
+			}, 1350);
+			setTimeout( function () {
+				document.getElementById("agendamento").click();
+			}, 1800);
+		</script>
+	</c:when>
+	<c:when test="${requestScope.created == false}">	
+		<div id="message-created-error" class="message">
+			<div class="message-content-error">
+				<h4 class="message-title">Ocorreu um erro ao criar esta reserva.</h4>
+			</div>
+		</div>
+		<a id="agendamento" href="agendamento.jsp"></a>
+		<script>
+			setTimeout( function () {
+				document.getElementById("message-created-error").style.visibility = "hidden";		
+			}, 1500);
+			setTimeout( function () {
+				document.getElementById("agendamento").click();
+			}, 1800);
+		</script>	
+	</c:when>
+</c:choose>
