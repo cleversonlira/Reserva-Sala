@@ -39,17 +39,26 @@ public class ControllerServlet extends HttpServlet {
 			applyEditing(req, resp);
 		} else if (action.equals("/delete")) {
 			delete(req, resp);
-			resp.sendRedirect("agendamento.jsp");
 		}
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.
-	private void delete(HttpServletRequest req, HttpServletResponse resp) {
+	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Reuniao reuniao = new Reuniao();
+		boolean deleted;
 
 		reuniao.setId(Integer.parseInt(req.getParameter("id")));
 		
-		new ReuniaoDAO().delete(reuniao);
+		if (new ReuniaoDAO().delete(reuniao)) {
+			deleted = true;
+		} else {
+			deleted = false;
+		}
+		
+		req.setAttribute("deleted", deleted);
+		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
+		rd.forward(req, resp);
+		System.out.println(deleted);
 	}
 
 	//Pega os dados da requisicao de Agendamento, cria uma nova reuniao com os dados que vieram do form e insere no banco.

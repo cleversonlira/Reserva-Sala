@@ -70,8 +70,9 @@ public class ReuniaoDAO {
 	}
 
 	//Falta implementar
-	public void delete(Reuniao reuniao) {
+	public boolean delete(Reuniao reuniao) {
 		reuniao.setExcluido(true);
+		boolean delete = false;
 		try 
 		(Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con
@@ -81,9 +82,12 @@ public class ReuniaoDAO {
 			stmt.setBoolean(1, reuniao.isExcluido());
 			stmt.setInt(2, reuniao.getId());
 			stmt.executeUpdate();
+			
+			delete = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return delete;
 	}
 
 	//Metodo de edicao de Reuniao, recebeo parametro Reuniao e atualiza a reuniao que contém o mesmo ID lá no banco.

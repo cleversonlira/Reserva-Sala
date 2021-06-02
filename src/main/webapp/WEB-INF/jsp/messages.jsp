@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!-- Mensage de sucesso após realizar alteração de registro (update) -->
+<!-- Mensagem após alterar registro (update) -->
 <c:choose>
 	<c:when test="${requestScope.updated == true}">	
 		<div id="message-update-sucess" class="message">
@@ -36,10 +36,10 @@
 	</c:when>
 </c:choose>
 
-<!-- Mensage de sucesso após realizar cadastro (Create/Insert) -->
+<!-- Mensagem após realizar cadastro (Create/Insert) -->
 <c:choose>
 	<c:when test="${requestScope.created == true}">	
-		<div id="message-update-sucess" class="message">
+		<div id="message-created-sucess" class="message">
 			<div class="message-content-sucess">
 				<h4 class="message-title">Reserva criada com sucesso.</h4>
 			</div>
@@ -58,6 +58,42 @@
 		<div id="message-created-error" class="message">
 			<div class="message-content-error">
 				<h4 class="message-title">Ocorreu um erro ao criar esta reserva.</h4>
+			</div>
+		</div>
+		<a id="agendamento" href="agendamento.jsp"></a>
+		<script>
+			setTimeout( function () {
+				document.getElementById("message-created-error").style.visibility = "hidden";		
+			}, 1500);
+			setTimeout( function () {
+				document.getElementById("agendamento").click();
+			}, 1800);
+		</script>	
+	</c:when>
+</c:choose>
+
+<!-- Mensagem após Deletar (delete) -->
+<c:choose>
+	<c:when test="${requestScope.deleted == true}">	
+		<div id="message-delete-sucess" class="message">
+			<div class="message-content-sucess">
+				<h4 class="message-title">Removido com sucesso.</h4>
+			</div>
+		</div>
+		<a id="agendamento" href="agendamento.jsp"></a>
+		<script>
+			setTimeout( function () {
+				document.getElementById("message-delete-sucess").style.visibility = "hidden";		
+			}, 1350);
+			setTimeout( function () {
+				document.getElementById("agendamento").click();
+			}, 1800);
+		</script>
+	</c:when>
+	<c:when test="${requestScope.deleted == false}">	
+		<div id="message-created-error" class="message">
+			<div class="message-content-error">
+				<h4 class="message-title">Ocorreu um erro ao remover esta reserva.</h4>
 			</div>
 		</div>
 		<a id="agendamento" href="agendamento.jsp"></a>
