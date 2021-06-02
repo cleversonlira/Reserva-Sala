@@ -95,7 +95,7 @@ public class ControllerServlet extends HttpServlet {
 	private void applyEditing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		Reuniao reuniao = new Reuniao();
-		boolean updated = false;
+		Boolean updated = null;
 
 		reuniao.setId(Integer.parseInt(req.getParameter("id")));
 		reuniao.setData(LocalDate.now().parse(req.getParameter("data")));
@@ -107,10 +107,15 @@ public class ControllerServlet extends HttpServlet {
 		reuniao.setTitulo(req.getParameter("titulo"));
 		reuniao.setObservacoes(req.getParameter("observacoes"));
 
-		if (new ReuniaoDAO().update(reuniao)) updated = true;
+		if (new ReuniaoDAO().update(reuniao)) {
+			updated = true;
+		} else {
+			updated = false;
+		}
 		
 		req.setAttribute("updated", updated);
 		RequestDispatcher rd = req.getRequestDispatcher("editar.jsp");
 		rd.forward(req, resp);
+		System.out.println(updated);
 	}
 }
