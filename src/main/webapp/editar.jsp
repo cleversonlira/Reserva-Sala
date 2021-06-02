@@ -31,5 +31,7 @@
 		<form action="apply-editing" method="post">
 		${listReunioes}<!-- Importando o arquivo listReunioes com a tabela de reunioes -->	
 	</section>
+	<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
+	${message}<!-- Logica de mensagens para o usuário -->
 </body>
 </html>

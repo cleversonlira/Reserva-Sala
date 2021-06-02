@@ -76,5 +76,3 @@
 		</c:forEach>
 	</tbody>
 </table>
-<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
-${message}<!-- Logica de mensagens para o usuário -->

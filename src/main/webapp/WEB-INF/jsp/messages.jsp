@@ -6,9 +6,13 @@
 			<h4 class="message-title">Reserva alterada com sucesso.</h4>
 		</div>
 	</div>
+	<a id="agendamento" href="agendamento.jsp"></a>
 	<script>
-		var fechaModal = setTimeout( function () {
+		setTimeout( function () {
 			document.getElementById("message-update-sucess").style.visibility = "hidden";		
 		}, 1350);
+		setTimeout( function () {
+			document.getElementById("agendamento").click();
+		}, 1355);
 	</script>
 </c:if>
