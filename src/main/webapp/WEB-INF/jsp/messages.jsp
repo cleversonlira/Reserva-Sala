@@ -41,7 +41,7 @@
 	<c:when test="${requestScope.created == true}">	
 		<div id="message-created-sucess" class="message">
 			<div class="message-content-sucess">
-				<h4 class="message-title">Reserva criada com sucesso.</h4>
+				<h4 class="message-title">Reservado com sucesso.</h4>
 			</div>
 		</div>
 		<a id="agendamento" href="agendamento.jsp"></a>

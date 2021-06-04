@@ -105,7 +105,7 @@ public class Reuniao {
 	public String toString() {
 		return "Reuniao [id=" + id + ", titulo=" + titulo + ", solicitante=" + solicitante + ", dataReuniao="
 				+ data + ", inicio=" + inicio + ", fim=" + fim + ", dataAgendamento=" + dataAgendamento
-				+ ", organizador=" + organizador + ", sala=" + sala + ", excluido=" + excluido + "]";
+				+ ", organizador=" + organizador + ", sala=" + sala + ", excluido=" + excluido + "]\n";
 	}
 
 }

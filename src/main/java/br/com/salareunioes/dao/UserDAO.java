@@ -39,10 +39,10 @@ public class UserDAO {
 	}
 	
 	public void inserir(User user) {
-		Connection con = new ConnectionFactory().getConnection();
 		
 		try 
 		(
+			Connection con = new ConnectionFactory().getConnection();
 			PreparedStatement stmt = con.prepareStatement("INSERT INTO Users(nome, sobreNome, email, senha)"
 			+ " VALUES(?,?,?,?)");		
 		) 
@@ -57,6 +57,29 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		
-	}	
+	}
+	
+	public boolean compare(String email, String password) {
+		User user = new User();
+		
+		try
+		(
+			Connection con = new ConnectionFactory().getConnection();
+			PreparedStatement stmt = con.prepareStatement("SELECT * FROM Users WHERE email = ? AND senha = ?");
+		)
+		{
+			stmt.setString(1, email);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				rs.close();
+				return true;				
+			}	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return false;
+	}
 	
 }

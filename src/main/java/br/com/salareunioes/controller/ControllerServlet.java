@@ -1,26 +1,23 @@
 package br.com.salareunioes.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
-import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.salareunioes.dao.ReuniaoDAO;
+import br.com.salareunioes.dao.UserDAO;
 import br.com.salareunioes.model.Reuniao;
 
 /**
  * Servlet implementation class AgendamentoServlet
  */
-@WebServlet(urlPatterns = { "/agendamento", "/edit", "/apply-editing", "/delete" })
+@WebServlet(urlPatterns = { "/login", "/agendamento", "/edit", "/apply-editing", "/delete" })
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +28,9 @@ public class ControllerServlet extends HttpServlet {
 		//pega o action do form
 		String action = req.getServletPath();
 		//verifica a acao a ser tomada e chama o metodo.
-		if (action.equals("/agendamento")) {
+		if (action.equals("/login")) {
+			login(req, resp);
+		} else if (action.equals("/agendamento")) {
 			agendarReuniao(req, resp);
 		} else if (action.equals("/edit")) {
 			listReuniao(req, resp);
@@ -40,6 +39,10 @@ public class ControllerServlet extends HttpServlet {
 		} else if (action.equals("/delete")) {
 			delete(req, resp);
 		}
+	}
+
+	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		boolean valid = new UserDAO().compare(req.getParameter("email"), req.getParameter("email"));
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.
@@ -133,7 +136,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		req.setAttribute("updated", updated);
-		RequestDispatcher rd = req.getRequestDispatcher("editar.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
 		rd.forward(req, resp);
 		System.out.println(updated);
 	}

@@ -20,6 +20,7 @@ public class ReuniaoDAO {
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE excluido IS NULL");
 				ResultSet rs = stmt.executeQuery();) {
+			
 			while (rs.next()) {
 				Reuniao reuniao = new Reuniao();
 				reuniao.setId(rs.getInt("id_reuniao"));

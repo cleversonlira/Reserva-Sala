@@ -43,7 +43,7 @@
 					</a>
 				</td>
 				<td>
-					<div class="modal-position">								
+					<div class="">								
 						<a href="#modal${reuniao.id}" class="btn btn-remover">
 					        <svg height="25" width="15" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					                viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -60,14 +60,14 @@
 					            </g>
 					        </svg>
 					    </a>
-					    <div id="modal${reuniao.id}" class="modal">
-					        <div class="modal-content">
-					            <h2 class="modal-title">Deletar permanentemente</h2>
+					    <div id="modal${reuniao.id}" class="message-confirm">
+					        <div class="message-content-confirm">
+					            <h2 class="message-title">Deletar permanentemente</h2>
 					                <p modal-description>
 					                   Tem certeza que deseja deletar esta reunião?
 					                </p>
-					                <a class="modal-link" href="delete?id=${reuniao.id}">Sim</a>
-					                <a class="modal-link-not" href="#titulo">Não</a>            
+					                <a class="message-link yes" href="delete?id=${reuniao.id}">Sim</a>
+					                <a class="message-link not" href="agendamento.jsp">Não</a>            
 					        </div>
 					    </div>
 				    </div>

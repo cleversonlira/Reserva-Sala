@@ -1,20 +1,33 @@
 package br.com.salareunioes.test;
 
-import br.com.salareunioes.dao.RecursoDAO;
-import br.com.salareunioes.model.Recurso;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import br.com.salareunioes.dao.ReuniaoDAO;
+import br.com.salareunioes.model.Reuniao;
 
 public class TesteResult {
 
 	public static void main(String[] args) {
 
 		
-		RecursoDAO dao = new RecursoDAO();
+		ReuniaoDAO dao = new ReuniaoDAO();
 		  
-		for(Recurso r : dao.listar()) { 
-			System.out.println(r.toString()); 
-		}
+//		for(Reuniao r : dao.list()) { 
+//			System.out.println(r.toString()); 
+//		}
 		 
-
+		//dao.list().forEach(System.out::println);
+				
+		Map<Boolean, List<Reuniao>> reunioes = dao.list().stream().collect(Collectors.groupingBy(rd -> rd.getData().isAfter(LocalDate.now())));
+				
+		System.out.println(reunioes);
+		
+				//.collect(Collectors.toList())); Lista de Boolean
+				
+				
 		/*
 		 * SalaDAO salaDAO = new SalaDAO();
 		 * 
