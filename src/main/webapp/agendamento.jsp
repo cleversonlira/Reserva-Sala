@@ -14,8 +14,23 @@
     <title>Agendamento</title>
 </head>
 <body class="container">    
+	<header id="header">
+		<a id="logo" href="#">
+			<img alt="Logo" width="170" height="29" src="img/login-pic.png">
+		</a>
+		<nav id="nav">
+		<button id="btn-mobile">Menu</button>
+			<ul id="menu">					
+				<li><a href="#">Detalhes das Reuniões</a></li>		
+				<li><a href="#">Painel</a></li>
+				<li><a href="#">Recursos</a></li>
+				<li><a href="#">Salas</a></li>
+				<li><a href="login.jsp">Sair</a></li>
+			</ul>
+		</nav>
+	</header>
     <section class="agendamento margin-top">
-        <h1>Reservar Sala</h1>
+        <h1 class="titulo-agendamento">Reservar Sala</h1>
         <c:import var="formAgendamento" url="WEB-INF/jsp/formAgendamento.jsp"/>
         <form action="agendamento" method="post">
         	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
@@ -29,5 +44,6 @@
 	</section>
 	<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
 	${message}<!-- Logica de mensagens para o usuário -->
+	<script src="js/functions.js"></script>
 </body>
 </html>

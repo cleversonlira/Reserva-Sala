@@ -9,6 +9,48 @@ body, ul, li, p {
     color: #5c5c5c;
 }
 
+a {
+	text-decoration: none;	
+}
+
+#btn-mobile {
+	display: none;
+}
+
+#header {
+	width: 100vw;
+	padding: 10px;
+	display: flex;
+	height: 60px;
+	align-items: center;
+	justify-content: space-between;
+	background: #e9ecef;
+}
+
+li {
+	font-size: 1rem;
+}
+
+#menu {
+	display: flex;
+	gap: .5rem;
+}
+
+#menu a {
+	display: block;
+	padding: .5rem;
+	color: black;
+}
+
+#menu a:hover {
+	font-weight: bold;
+	background-color: #DBE6F0;
+}
+
+#menu a:active {
+	font-weight: normal;
+}
+
 .container {
     background-color: rgb(100, 183, 255);
     height: 100vh;
@@ -19,15 +61,11 @@ body, ul, li, p {
 
 /*Section Agendamento*/
 .agendamento {
-    height: 600px;
+    height: 590px;
     width: 400px;
     background-color: #e9ecef; 
     margin: 10px;
     padding: 10px;
-}
-
-.margin-top {
-    margin-top: 10px;
 }
 
 h1 {
@@ -44,13 +82,9 @@ h1 {
     padding: 10px;
 }
 
-#id {
-	display: none;	
-}
-
 .agendamento form label {
     display: block;
-    margin-top: 10px;
+    margin: 8px 0 0 0;
 }
 
 .grid {
@@ -96,11 +130,15 @@ input, select, textarea {
 
 /*Section agendados*/
 .agendados {
-    height: 600px;
+    height: 590px;
     width: 400px;
     background-color: #e9ecef;
     margin: 10px;
     padding: 10px;
+}
+
+.margin-top {
+    margin-top: 5px;
 }
 
 table {
@@ -169,14 +207,48 @@ tr > th {
     height: 50px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 660px) {	
+	#menu {
+		/*display: none;*/
+		display: block;
+		position: absolute;
+		width: 100%;
+		top: 60px;
+		right: 0px;
+		background: #e9ecef;
+        transition: 1s;
+		z-index: 1000;
+        height: 0px;
+		visibility: hidden;
+        overflow-y: hidden;
+	}
+	
+	#nav.active #menu {
+        height: 300px;
+		visibility: visible;	
+        overflow-y: auto;
+	}
+
+    #btn-mobile {
+		display: flex;	
+	}
+	
+	#menu a {
+		padding: 1rem 0;
+		margin: 0 1rem;
+		border-bottom: 2px solid rgba(0, 0, 0, .05);
+	}
+	
+	.container {
+		max-width: 100vw;
+	}
+	
 	.agendamento {
-		max-width: 360px;
-		background-color: green;
+		max-width: 100vw;
 		margin: 0 auto;
 	}
 	.agendados {
-		max-width: 360px;		
+		max-width: 100vw;		
 		margin: 0 auto;
 	}
 }

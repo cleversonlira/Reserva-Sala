@@ -27,6 +27,7 @@ public class ControllerServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//pega o action do form
 		String action = req.getServletPath();
+		
 		//verifica a acao a ser tomada e chama o metodo.
 		if (action.equals("/login")) {
 			login(req, resp);
@@ -42,7 +43,15 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		boolean valid = new UserDAO().compare(req.getParameter("email"), req.getParameter("email"));
+		boolean valid;
+		
+		if (new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"))) {
+			valid = true;
+			req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
+		} else {
+			valid = false;
+		}
+		req.setAttribute("valid", valid);		
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.
@@ -59,8 +68,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		req.setAttribute("deleted", deleted);
-		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
-		rd.forward(req, resp);
+		req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
 		System.out.println(deleted);
 	}
 
@@ -88,8 +96,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		req.setAttribute("created", created);
-		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
-		rd.forward(req, resp);
+		req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
 		System.out.println(created);
 		
 	}
@@ -109,8 +116,7 @@ public class ControllerServlet extends HttpServlet {
 		req.setAttribute("sala", reuniao.getSala());
 		req.setAttribute("observacoes", reuniao.getObservacoes());
 		
-		RequestDispatcher rd = req.getRequestDispatcher("editar.jsp");
-		rd.forward(req, resp);
+		req.getRequestDispatcher("editar.jsp").forward(req, resp);
 	}
 	
 	//Aplica a edicao da Reuniao no banco usando o ID, após criar uma Reuniao com os atributos atualizados.
@@ -136,8 +142,7 @@ public class ControllerServlet extends HttpServlet {
 		}
 		
 		req.setAttribute("updated", updated);
-		RequestDispatcher rd = req.getRequestDispatcher("agendamento.jsp");
-		rd.forward(req, resp);
+		req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
 		System.out.println(updated);
 	}
 }

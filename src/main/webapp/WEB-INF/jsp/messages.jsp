@@ -1,5 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<!-- Mensagem após tentar fazer login (ControllerServlet.login(req, resp)) -->
+<c:choose>
+	<c:when test="${requestScope.valid == false}">	
+		<div id="message-login-error" class="message">
+			<div class="message-content-error">
+				<h4 class="message-title">E-mail ou Senha inválidos.</h4>
+			</div>
+		</div>		
+		<script>
+			setTimeout( function () {
+				document.getElementById("message-update-error").style.visibility = "hidden";		
+			}, 1500);
+		</script>	
+	</c:when>
+</c:choose>
+
 <!-- Mensagem após alterar registro (update) -->
 <c:choose>
 	<c:when test="${requestScope.updated == true}">	
