@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.dao.UserDAO;
@@ -17,7 +18,7 @@ import br.com.salareunioes.model.Reuniao;
 /**
  * Servlet implementation class AgendamentoServlet
  */
-@WebServlet(urlPatterns = { "/login", "/agendamento", "/edit", "/apply-editing", "/delete" })
+@WebServlet(urlPatterns = { "/login", "/logout", "/agendamento", "/edit", "/apply-editing", "/delete" })
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +32,8 @@ public class ControllerServlet extends HttpServlet {
 		//verifica a acao a ser tomada e chama o metodo.
 		if (action.equals("/login")) {
 			login(req, resp);
+		} else if (action.equals("/logout")) {
+			logout(req, resp);
 		} else if (action.equals("/agendamento")) {
 			agendarReuniao(req, resp);
 		} else if (action.equals("/edit")) {
@@ -40,18 +43,32 @@ public class ControllerServlet extends HttpServlet {
 		} else if (action.equals("/delete")) {
 			delete(req, resp);
 		}
+		
 	}
 
 	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession sessao = req.getSession();
+		
 		boolean valid;
 		
 		if (new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"))) {
 			valid = true;
+			sessao.setAttribute("valid", valid);
 			req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
+			System.out.println("logou");
 		} else {
 			valid = false;
+			sessao.invalidate();
+			req.setAttribute("valid", valid);
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}
-		req.setAttribute("valid", valid);		
+	}
+	
+	private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getSession().invalidate();
+		resp.sendRedirect("login.jsp");
+		System.out.println("deslogou");
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.

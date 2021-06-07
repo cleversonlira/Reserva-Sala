@@ -8,6 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/messages.css">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
 	<title>Login</title>
@@ -22,8 +23,8 @@
 			<h1>Login</h1>
 			<form action="login" method="post">
 				<div>					
-					<input class="input" type="email" name="email" placeholder="login@siqueiracastro.com.br"/>
-					<input class="input" type="password" name="senha" placeholder="*********"/>
+					<input class="input" type="email" name="email" placeholder="login@siqueiracastro.com.br" required/>
+					<input class="input" type="password" name="senha" placeholder="*********" required/>
 					
 					<input class="inline input" type="checkbox" id="remember" name="remember" value="remember">
 					
