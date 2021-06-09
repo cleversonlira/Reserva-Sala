@@ -14,6 +14,7 @@ import br.com.salareunioes.action.AgendarReuniao;
 import br.com.salareunioes.action.ApplyEditing;
 import br.com.salareunioes.action.DeletarReuniao;
 import br.com.salareunioes.action.ListReuniao;
+import br.com.salareunioes.action.RedirectServerSide;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.dao.UserDAO;
 import br.com.salareunioes.model.Reuniao;
@@ -22,7 +23,7 @@ import br.com.salareunioes.model.User;
 /**
  * Servlet implementation class AgendamentoServlet
  */
-@WebServlet(urlPatterns = { "/login", "/logout", "/agendamento", "/edit", "/apply-editing", "/delete" })
+@WebServlet(urlPatterns = { "/login", "/logout", "/agendar", "/agendamento", "/edit", "/apply-editing", "/delete", "/redirect"})
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,8 +41,11 @@ public class ControllerServlet extends HttpServlet {
 		case "/logout":
 			action = logout(req, resp);
 			break;	
-		case "/agendamento":
+		case "/agendar":
 			action = AgendarReuniao.executa(req, resp);
+			break;
+		case "/agendamento":
+			action = RedirectServerSide.executa(req, resp);
 			break;
 		case "/edit":
 			action = ListReuniao.executa(req, resp);
@@ -52,16 +56,36 @@ public class ControllerServlet extends HttpServlet {
 		case "/delete":
 			action = DeletarReuniao.executa(req, resp);
 			break;
+		case "/redirect":
+			System.out.println("chamou redirect para agendamento.jsp");
+			action = RedirectServerSide.executa(req, resp);
+			break;
 		default:
 			break;
 		}
 		
 		String[] typeAction = action.split(":");
 		
-		if(typeAction[0].equals("forward")) {
-			req.getRequestDispatcher(typeAction[1]).forward(req, resp);
-		} else {
+		if(typeAction[1].equals("loginMessageError")) {//erro de login
+			
+			System.out.println("Caiu no if de loginError" + action);
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			
+		} else if(typeAction[0].equals("forward") && typeAction[1].contains("agendamento")) {//é um foward para agendamento?
+			
+			System.out.println("caiu no if de redirecionamento " + action);			
+			req.getRequestDispatcher("WEB-INF/jsp/" + typeAction[1]).forward(req, resp);
+			
+		} else if(typeAction[0].equals("forward")) {
+			
+			System.out.println("caiu no if de redirecionamento " + action);			
+			req.getRequestDispatcher("WEB-INF/jsp/" + typeAction[1]).forward(req, resp);
+			
+		} else if(typeAction[0].equals("redirect")) {
+			
+			System.out.println("Caiu no if de redirect " + action);
 			resp.sendRedirect(typeAction[1]);
+			
 		}
 		
 	}
@@ -74,12 +98,12 @@ public class ControllerServlet extends HttpServlet {
 		if (!(userLogged == null)) {
 			sessao.setAttribute("userLogged", userLogged);
 			System.out.println("logou");
-			return "redirect:agendamento.jsp";
+			return "forward:agendamento.jsp";
 		} else {
 			sessao.invalidate();
 			boolean valid = false;
 			req.setAttribute("valid", valid);
-			return "forward:login.jsp";
+			return "forward:loginMessageError";
 		}
 	}
 	

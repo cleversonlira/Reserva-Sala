@@ -12,7 +12,7 @@ import br.com.salareunioes.model.Reuniao;
 public class ListReuniao {
 
 	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-Reuniao reuniao = new ReuniaoDAO().selectById(Integer.parseInt(req.getParameter("id")));
+		Reuniao reuniao = new ReuniaoDAO().selectById(Integer.parseInt(req.getParameter("id")));
 		
 		req.setAttribute("id", reuniao.getId());
 		req.setAttribute("titulo", reuniao.getTitulo());

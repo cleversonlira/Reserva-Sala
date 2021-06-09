@@ -67,7 +67,7 @@
 					                   Tem certeza que deseja deletar esta reunião?
 					                </p>
 					                <a class="message-link yes" href="delete?id=${reuniao.id}">Sim</a>
-					                <a class="message-link not" href="agendamento.jsp">Não</a>            
+					                <a class="message-link not" href="agendamento">Não</a>            
 					        </div>
 					    </div>
 				    </div>
