@@ -1,8 +1,11 @@
 <header id="header">
-	<a id="logo" href="#">
-		<img alt="Logo" width="170" height="29" src="img/login-pic.png">
-	</a>
-	<nav id="nav">
+	<div>
+		<a id="logo" href="#">
+			<img alt="Logo" width="170" height="29" src="img/login-pic.png">
+		</a>
+		<p id="welcome">Bem vindo, ${userLogged.nome}</p>
+	</div>
+	<nav id="nav">	
 	<button id="btn-mobile">Menu</button>
 		<ul id="menu">					
 			<li><a href="#">Detalhes das Reuniões</a></li>		

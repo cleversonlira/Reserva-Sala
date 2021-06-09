@@ -27,6 +27,10 @@ a {
 	background: #e9ecef;
 }
 
+#welcome {
+	align-items: start !important;
+}
+
 li {
 	font-size: 1rem;
 }

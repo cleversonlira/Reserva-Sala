@@ -3,7 +3,6 @@ package br.com.salareunioes.controller;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.com.salareunioes.action.AgendarReuniao;
+import br.com.salareunioes.action.ApplyEditing;
+import br.com.salareunioes.action.DeletarReuniao;
+import br.com.salareunioes.action.ListReuniao;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.dao.UserDAO;
 import br.com.salareunioes.model.Reuniao;
+import br.com.salareunioes.model.User;
 
 /**
  * Servlet implementation class AgendamentoServlet
@@ -29,50 +33,64 @@ public class ControllerServlet extends HttpServlet {
 		//pega o action do form
 		String action = req.getServletPath();
 		
-		//verifica a acao a ser tomada e chama o metodo.
-		if (action.equals("/login")) {
-			login(req, resp);
-		} else if (action.equals("/logout")) {
-			logout(req, resp);
-		} else if (action.equals("/agendamento")) {
-			agendarReuniao(req, resp);
-		} else if (action.equals("/edit")) {
-			listReuniao(req, resp);
-		} else if (action.equals("/apply-editing")) {
-			applyEditing(req, resp);
-		} else if (action.equals("/delete")) {
-			delete(req, resp);
+		switch (action) {
+		case "/login":
+			action = login(req, resp);
+			break;
+		case "/logout":
+			action = logout(req, resp);
+			break;	
+		case "/agendamento":
+			action = AgendarReuniao.executa(req, resp);
+			break;
+		case "/edit":
+			action = ListReuniao.executa(req, resp);
+			break;
+		case "/apply-editing":
+			action = ApplyEditing.executa(req, resp);
+			break;
+		case "/delete":
+			action = DeletarReuniao.executa(req, resp);
+			break;
+		default:
+			break;
+		}
+		
+		String[] typeAction = action.split(":");
+		
+		if(typeAction[0].equals("forward")) {
+			req.getRequestDispatcher(typeAction[1]).forward(req, resp);
+		} else {
+			resp.sendRedirect(typeAction[1]);
 		}
 		
 	}
 
-	private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession sessao = req.getSession();
+		User userLogged = new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"));		
 		
-		boolean valid;
-		
-		if (new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"))) {
-			valid = true;
-			sessao.setAttribute("valid", valid);
-			req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
+		if (!(userLogged == null)) {
+			sessao.setAttribute("userLogged", userLogged);
 			System.out.println("logou");
+			return "redirect:agendamento.jsp";
 		} else {
-			valid = false;
 			sessao.invalidate();
+			boolean valid = false;
 			req.setAttribute("valid", valid);
-			req.getRequestDispatcher("login.jsp").forward(req, resp);
+			return "forward:login.jsp";
 		}
 	}
 	
-	private void logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	private String logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getSession().invalidate();
-		resp.sendRedirect("login.jsp");
 		System.out.println("deslogou");
+		return "redirect:login.jsp";
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.
-	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+/*	private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Reuniao reuniao = new Reuniao();
 		boolean deleted;
 
@@ -136,7 +154,8 @@ public class ControllerServlet extends HttpServlet {
 		req.getRequestDispatcher("editar.jsp").forward(req, resp);
 	}
 	
-	//Aplica a edicao da Reuniao no banco usando o ID, após criar uma Reuniao com os atributos atualizados.
+	// Aplica a edicao da Reuniao no banco usando o ID, após criar uma Reuniao com
+	// os atributos atualizados.
 	private void applyEditing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		Reuniao reuniao = new Reuniao();
@@ -150,7 +169,7 @@ public class ControllerServlet extends HttpServlet {
 		reuniao.setSala(Integer.parseInt(req.getParameter("sala")));
 		reuniao.setSolicitante(req.getParameter("solicitante"));
 		reuniao.setTitulo(req.getParameter("titulo"));
-		reuniao.setObservacoes(req.getParameter("observacoes"));
+		reuniao.setObservacoes(req.getParameter("observacoes"));		
 
 		if (new ReuniaoDAO().update(reuniao)) {
 			updated = true;
@@ -162,4 +181,5 @@ public class ControllerServlet extends HttpServlet {
 		req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
 		System.out.println(updated);
 	}
+*/
 }

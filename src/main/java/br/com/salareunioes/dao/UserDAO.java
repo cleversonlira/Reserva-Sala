@@ -59,7 +59,7 @@ public class UserDAO {
 		
 	}
 	
-	public boolean compare(String email, String password) {
+	public User compare(String email, String password) {
 		User user = new User();
 		
 		try
@@ -72,14 +72,19 @@ public class UserDAO {
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
 			if (rs.next()) {
+				user.setId(rs.getInt("id_user"));
+				user.setNome(rs.getString("nome"));
+				user.setSobrenome(rs.getString("sobrenome"));
+				user.setEmail(rs.getString("email"));
+				user.setSenha(rs.getString("senha"));
 				rs.close();
-				return true;				
+				return user;				
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
 		
-		return false;
+		return null;
 	}
 	
 }

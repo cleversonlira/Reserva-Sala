@@ -23,7 +23,7 @@
 			<h1>Login</h1>
 			<form action="login" method="post">
 				<div>					
-					<input class="input" type="email" name="email" placeholder="login@siqueiracastro.com.br" required/>
+					<input class="input" type="email" name="email" placeholder="login@siqueiracastro.com.br" value="${requestScope.email}" required/>
 					<input class="input" type="password" name="senha" placeholder="*********" required/>
 					
 					<input class="inline input" type="checkbox" id="remember" name="remember" value="remember">

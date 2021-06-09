@@ -15,7 +15,7 @@
 </head>
 <body class="container">    
 <c:choose>
-	<c:when test="${((sessionScope.valid != null) and (sessionScope.valid != false)) or (sessionScope.valid == true)}">	
+	<c:when test="${sessionScope.userLogged != null}">	
 		<c:import var="headerContainer" url="WEB-INF/jsp/header.jsp"/>
 		${headerContainer}
 	    <section class="agendamento margin-top">

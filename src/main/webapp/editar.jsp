@@ -15,22 +15,31 @@
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <title>Editar</title>
 </head>
-<body class="container">    
-    <section class="agendamento margin-top">
-        <h1>Reservar Sala</h1>
-        <c:import var="formAgendamento" url="WEB-INF/jsp/formAgendamento.jsp"/>
-        <form action="apply-editing" method="post">
-        	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
-        	<input class="enviar" type="submit" value="Aplicar Alterações">
-		</form>
-    </section>
-    <section class="agendados margin-top">
-		<h1 class="text-center">Reservas Realizadas</h1>
-		<c:import var="listReunioes" url="WEB-INF/jsp/listReunioes.jsp"/>
-		<form action="apply-editing" method="post">
-		${listReunioes}<!-- Importando o arquivo listReunioes com a tabela de reunioes -->	
-	</section>
-	<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
-	${message}<!-- Logica de mensagens para o usuário -->
+<body class="container">
+<c:choose>
+	<c:when test="${sessionScope.userLogged != null}">	
+		<c:import var="headerContainer" url="WEB-INF/jsp/header.jsp"/>
+		${headerContainer} 
+	    <section class="agendamento margin-top">
+	        <h1>Reservar Sala</h1>
+	        <c:import var="formAgendamento" url="WEB-INF/jsp/formAgendamento.jsp"/>
+	        <form action="apply-editing" method="post">
+	        	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
+	        	<input class="enviar" type="submit" value="Aplicar Alterações">
+			</form>
+	    </section>
+	    <section class="agendados margin-top">
+			<h1 class="text-center">Reservas Realizadas</h1>
+			<c:import var="listReunioes" url="WEB-INF/jsp/listReunioes.jsp"/>
+			<form action="apply-editing" method="post">
+			${listReunioes}<!-- Importando o arquivo listReunioes com a tabela de reunioes -->	
+		</section>
+		<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
+		${message}<!-- Logica de mensagens para o usuário -->
+		</c:when>
+	<c:otherwise>
+		<c:redirect url="/login.jsp"></c:redirect>
+	</c:otherwise>
+</c:choose>
 </body>
 </html>
