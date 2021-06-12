@@ -7,7 +7,7 @@ public class RedirectServerSide {
 
 	
 	public static String executa(HttpServletRequest req, HttpServletResponse resp) {
-		return "forward:agendamento.jsp";
+		return "forward:agendamento.jsp";//teste (se func, mudar nome da classe)
 	}
 	
 }

@@ -21,10 +21,11 @@
 		</picture>
 		<div class="access-data" id="access-data">
 			<h1>Login</h1>
-			<form action="login" method="post">
+			<form action="reserva" method="post">
 				<div>					
 					<input class="input" type="email" name="email" placeholder="login@siqueiracastro.com.br" value="${requestScope.email}" required/>
 					<input class="input" type="password" name="senha" placeholder="*********" required/>
+					<input type="hidden" name="action" id="action" value="login">
 					
 					<input class="inline input" type="checkbox" id="remember" name="remember" value="remember">
 					
@@ -36,7 +37,7 @@
 			</form>
 		</div>  	
 	</div>
-	<c:import var="message" url="WEB-INF/jsp/messages.jsp"/>
+	<c:import var="message" url="WEB-INF/view/messages.jsp"/>
 	${message}<!-- Logica de mensagens para o usuário -->
 	<footer class="footer" id="footer">
 		<p>Desenvolvido por Cleverson Lira</p>

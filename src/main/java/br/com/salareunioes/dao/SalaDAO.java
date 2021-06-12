@@ -5,8 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.Sala;
-import br.com.salareunioes.util.ConnectionFactory;
 
 public class SalaDAO {
 

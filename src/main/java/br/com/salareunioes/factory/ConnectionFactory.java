@@ -1,4 +1,4 @@
-package br.com.salareunioes.util;
+package br.com.salareunioes.factory;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

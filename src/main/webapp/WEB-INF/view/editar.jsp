@@ -17,29 +17,33 @@
 </head>
 <body class="container">
 <c:choose>
+
 	<c:when test="${sessionScope.userLogged != null}">	
-		<c:import var="headerContainer" url="../jsp/header.jsp"/>
+		<c:import var="headerContainer" url="../view/header.jsp"/>
 		${headerContainer} 
 	    <section class="agendamento margin-top">
 	        <h1>Reservar Sala</h1>
-	        <c:import var="formAgendamento" url="../jsp/formAgendamento.jsp"/>
-	        <form action="apply-editing" method="post">
+	        <c:import var="formAgendamento" url="../view/formAgendamento.jsp"/>
+	        <form action="reserva" method="post">
 	        	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
+	        	<input type="hidden" name="action" id="action" value="apply-editing">
 	        	<input class="enviar" type="submit" value="Aplicar Alterações">
 			</form>
 	    </section>
+	    
 	    <section class="agendados margin-top">
 			<h1 class="text-center">Reservas Realizadas</h1>
-			<c:import var="listReunioes" url="../jsp/listReunioes.jsp"/>
-			<form action="apply-editing" method="post">
+			<c:import var="listReunioes" url="../view/listReunioes.jsp"/>
 			${listReunioes}<!-- Importando o arquivo listReunioes com a tabela de reunioes -->	
 		</section>
-		<c:import var="message" url="../jsp/messages.jsp"/>
+		<c:import var="message" url="../view/messages.jsp"/>
 		${message}<!-- Logica de mensagens para o usuário -->
-		</c:when>
+	</c:when>
+	
 	<c:otherwise>
 		<c:redirect url="/login.jsp"></c:redirect>
 	</c:otherwise>
+	
 </c:choose>
 </body>
 </html>

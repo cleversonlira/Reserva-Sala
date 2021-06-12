@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.User;
-import br.com.salareunioes.util.ConnectionFactory;
 
 public class UserDAO {
 

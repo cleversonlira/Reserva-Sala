@@ -14,6 +14,8 @@ import br.com.salareunioes.action.AgendarReuniao;
 import br.com.salareunioes.action.ApplyEditing;
 import br.com.salareunioes.action.DeletarReuniao;
 import br.com.salareunioes.action.ListReuniao;
+import br.com.salareunioes.action.Login;
+import br.com.salareunioes.action.Logout;
 import br.com.salareunioes.action.RedirectServerSide;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.dao.UserDAO;
@@ -23,7 +25,8 @@ import br.com.salareunioes.model.User;
 /**
  * Servlet implementation class AgendamentoServlet
  */
-@WebServlet(urlPatterns = { "/login", "/logout", "/agendar", "/agendamento", "/edit", "/apply-editing", "/delete", "/redirect"})
+//@WebServlet(urlPatterns = { "/login", "/logout", "/agendar", "/agendamento", "/edit", "/apply-editing", "/delete", "/redirect"}) Acoes
+@WebServlet(urlPatterns = { "/reserva"})
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,33 +35,31 @@ public class ControllerServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//pega o action do form
-		String action = req.getServletPath();
+		//String action = req.getServletPath(); Acoes
+		String action = req.getParameter("action");
+		System.out.println("Action: " + action);
 		
 		switch (action) {
-		case "/login":
-			action = login(req, resp);
+		case "login":
+			action = Login.executa(req, resp);
 			break;
-		case "/logout":
-			action = logout(req, resp);
+		case "logout":
+			action = Logout.executa(req, resp);
 			break;	
-		case "/agendar":
+		case "agendar":
 			action = AgendarReuniao.executa(req, resp);
 			break;
-		case "/agendamento":
+		case "agendamento":
 			action = RedirectServerSide.executa(req, resp);
 			break;
-		case "/edit":
+		case "edit":
 			action = ListReuniao.executa(req, resp);
 			break;
-		case "/apply-editing":
+		case "apply-editing":
 			action = ApplyEditing.executa(req, resp);
 			break;
-		case "/delete":
+		case "delete":
 			action = DeletarReuniao.executa(req, resp);
-			break;
-		case "/redirect":
-			System.out.println("chamou redirect para agendamento.jsp");
-			action = RedirectServerSide.executa(req, resp);
 			break;
 		default:
 			break;
@@ -71,46 +72,19 @@ public class ControllerServlet extends HttpServlet {
 			System.out.println("Caiu no if de loginError" + action);
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 			
-		} else if(typeAction[0].equals("forward") && typeAction[1].contains("agendamento")) {//é um foward para agendamento?
-			
-			System.out.println("caiu no if de redirecionamento " + action);			
-			req.getRequestDispatcher("WEB-INF/jsp/" + typeAction[1]).forward(req, resp);
-			
 		} else if(typeAction[0].equals("forward")) {
 			
 			System.out.println("caiu no if de redirecionamento " + action);			
-			req.getRequestDispatcher("WEB-INF/jsp/" + typeAction[1]).forward(req, resp);
+			req.getRequestDispatcher("WEB-INF/view/" + typeAction[1]).forward(req, resp);
 			
 		} else if(typeAction[0].equals("redirect")) {
 			
 			System.out.println("Caiu no if de redirect " + action);
+			//req.getRequestDispatcher(typeAction[1]).forward(req, resp);
 			resp.sendRedirect(typeAction[1]);
 			
 		}
 		
-	}
-
-	private String login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		HttpSession sessao = req.getSession();
-		User userLogged = new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"));		
-		
-		if (!(userLogged == null)) {
-			sessao.setAttribute("userLogged", userLogged);
-			System.out.println("logou");
-			return "forward:agendamento.jsp";
-		} else {
-			sessao.invalidate();
-			boolean valid = false;
-			req.setAttribute("valid", valid);
-			return "forward:loginMessageError";
-		}
-	}
-	
-	private String logout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getSession().invalidate();
-		System.out.println("deslogou");
-		return "redirect:login.jsp";
 	}
 
 	//Crio uma reuniao, seto o id nesta reuniao, e chamo o delete() da ReuniaoDAO para deletar esta reuniao.

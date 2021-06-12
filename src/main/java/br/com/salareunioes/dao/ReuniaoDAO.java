@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.Reuniao;
-import br.com.salareunioes.util.ConnectionFactory;
 
 public class ReuniaoDAO {
 

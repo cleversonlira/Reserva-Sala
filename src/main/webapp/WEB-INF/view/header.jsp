@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header id="header">
 	<div>
 		<a id="logo" href="#">
@@ -12,7 +13,8 @@
 			<li><a href="#">Painel</a></li>
 			<li><a href="#">Recursos</a></li>
 			<li><a href="#">Salas</a></li>
-			<li><a href="logout">Sair</a></li>
+			<li><a href="/Reserva-Sala/reserva?action=logout">Sair</a></li>
+			<c:import url="logout-parcial.jsp" />
 		</ul>
 	</nav>
 </header>
