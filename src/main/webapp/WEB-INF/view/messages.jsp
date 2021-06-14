@@ -2,13 +2,13 @@
 
 <!-- Mensagem após tentar fazer login (ControllerServlet.login(req, resp)) -->
 <c:choose>
-	<c:when test="${(requestScope.valid == false) and (requestScope.valid != null)}">	
+	<c:when test="${(requestScope.valid == false)}">	
 		<div id="message-login-error" class="message">
 			<div class="message-content-error">
 				<h4 class="message-title">E-mail ou Senha inválidos.</h4>
 			</div>
 		</div>	
-		<a id="login" href="login.jsp"></a>	
+		<a id="login" href="/Reserva-Sala/reserva?action=logout"></a>	
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-login-error").style.visibility = "hidden";		

@@ -37,7 +37,7 @@
 			</form>
 		</div>  	
 	</div>
-	<c:import var="message" url="WEB-INF/view/messages.jsp"/>
+	<c:import var="message" url="messages.jsp"/>
 	${message}<!-- Logica de mensagens para o usuário -->
 	<footer class="footer" id="footer">
 		<p>Desenvolvido por Cleverson Lira</p>

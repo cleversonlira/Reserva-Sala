@@ -13,8 +13,7 @@
 			<li><a href="#">Painel</a></li>
 			<li><a href="#">Recursos</a></li>
 			<li><a href="#">Salas</a></li>
-			<li><a href="/Reserva-Sala/reserva?action=logout">Sair</a></li>
-			<c:import url="logout-parcial.jsp" />
+			<li><a href="reserva?action=logout">Sair</a></li>
 		</ul>
 	</nav>
 </header>
