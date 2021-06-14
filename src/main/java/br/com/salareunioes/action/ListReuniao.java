@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.model.Reuniao;
 
-public class ListReuniao {
+public class ListReuniao implements Action {
 
-	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Reuniao reuniao = new ReuniaoDAO().selectById(Integer.parseInt(req.getParameter("id")));
 		
 		req.setAttribute("id", reuniao.getId());
@@ -22,8 +22,6 @@ public class ListReuniao {
 		req.setAttribute("data", reuniao.getData());
 		req.setAttribute("sala", reuniao.getSala());
 		req.setAttribute("observacoes", reuniao.getObservacoes());
-		
-		//req.getRequestDispatcher("editar.jsp").forward(req, resp);
 		
 		return "forward:editar.jsp";
 	}

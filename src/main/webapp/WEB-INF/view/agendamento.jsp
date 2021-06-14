@@ -25,7 +25,7 @@
 	        <c:import var="formAgendamento" url="formAgendamento.jsp"/>
 	        <form action="reserva" method="post">
 	        	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
-		        <input type="hidden" name="action" id="action" value="agendar">
+		        <input type="hidden" name="action" id="action" value="Agendar">
 		        <input class="enviar" type="submit" value="Agendar">
 			</form>
 	    </section>

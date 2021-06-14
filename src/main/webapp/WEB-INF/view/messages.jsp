@@ -8,7 +8,7 @@
 				<h4 class="message-title">E-mail ou Senha inválidos.</h4>
 			</div>
 		</div>	
-		<a id="login" href="/Reserva-Sala/reserva?action=logout"></a>	
+		<a id="login" href="/Reserva-Sala/reserva?action=Logout"></a>	
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-login-error").style.visibility = "hidden";		
@@ -28,7 +28,7 @@
 				<h4 class="message-title">Reserva alterada com sucesso.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-update-sucess").style.visibility = "hidden";		
@@ -44,7 +44,7 @@
 				<h4 class="message-title">Ocorreu um erro ao alterar esta reserva.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-update-error").style.visibility = "hidden";		
@@ -64,7 +64,7 @@
 				<h4 class="message-title">Reservado com sucesso.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-created-sucess").style.visibility = "hidden";		
@@ -80,7 +80,7 @@
 				<h4 class="message-title">Ocorreu um erro ao criar esta reserva.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-created-error").style.visibility = "hidden";		
@@ -100,7 +100,7 @@
 				<h4 class="message-title">Removido com sucesso.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-delete-sucess").style.visibility = "hidden";		
@@ -116,7 +116,7 @@
 				<h4 class="message-title">Ocorreu um erro ao remover esta reserva.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=agendamento"></a>
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
 		<script>
 			setTimeout( function () {
 				document.getElementById("message-created-error").style.visibility = "hidden";		

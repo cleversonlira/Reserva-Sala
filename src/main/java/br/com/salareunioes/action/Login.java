@@ -10,15 +10,14 @@ import javax.servlet.http.HttpSession;
 import br.com.salareunioes.dao.UserDAO;
 import br.com.salareunioes.model.User;
 
-public class Login {
+public class Login implements Action {
 
-	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User userLogged = new UserDAO().compare(req.getParameter("email"), req.getParameter("senha"));		
 		HttpSession session = req.getSession();
 		
 		if (userLogged != null) {
 			session.setAttribute("userLogged", userLogged);
-			System.out.println("logou");
 			return "forward:agendamento.jsp";
 		} else {
 			boolean valid = false;

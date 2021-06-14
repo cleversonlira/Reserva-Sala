@@ -1,6 +1,7 @@
 package br.com.salareunioes.action;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 
 import javax.servlet.ServletException;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.model.Reuniao;
 
-public class AgendarReuniao {
+public class Agendar implements Action {
 
-	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Resolve o problema de caracteres especiais
 		req.setCharacterEncoding("UTF-8");
 		
@@ -33,10 +34,7 @@ public class AgendarReuniao {
 		} else {
 			created = false;
 		}
-		
 		req.setAttribute("created", created);
-		//req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
-		System.out.println(created);
 		
 		return "forward:agendamento.jsp";
 	}

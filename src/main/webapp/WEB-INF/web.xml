@@ -9,4 +9,32 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<filter>
+		<filter-name>MonitoringFilter</filter-name>
+		<filter-class>br.com.salareunioes.filter.MonitoringFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MonitoringFilter</filter-name>
+		<url-pattern>/reserva</url-pattern>
+	</filter-mapping>
+	
+	
+	<filter>
+		<filter-name>AutenticFilter</filter-name>
+		<filter-class>br.com.salareunioes.filter.AutenticFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutenticFilter</filter-name>
+		<url-pattern>/reserva</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>ControllerFilter</filter-name>
+		<filter-class>br.com.salareunioes.filter.ControllerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ControllerFilter</filter-name>
+		<url-pattern>/reserva</url-pattern>
+	</filter-mapping>	
 </web-app>

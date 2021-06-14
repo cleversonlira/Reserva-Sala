@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.model.Reuniao;
 
-public class DeletarReuniao {
+public class Delete implements Action {
 
-	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		Reuniao reuniao = new Reuniao();
 		boolean deleted;
@@ -23,10 +23,7 @@ public class DeletarReuniao {
 		} else {
 			deleted = false;
 		}
-		
 		req.setAttribute("deleted", deleted);
-		//req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
-		System.out.println(deleted);
 		
 		return "forward:agendamento.jsp";
 	}

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AutenticFilter
  */
-@WebFilter("/reserva")
+//@WebFilter("/reserva")
 public class AutenticFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -27,15 +27,14 @@ public class AutenticFilter implements Filter {
 		HttpSession session = req.getSession();
 		
 		boolean protectedAction = !(req.getParameter("action").equals("LoginForm")
-				|| req.getParameter("action").equals("login") || req.getParameter("action").equals("logout"));	
+				|| req.getParameter("action").equals("Login") || req.getParameter("action").equals("Logout"));	
 		
 		boolean userLogged = session.getAttribute("userLogged") != null;
 		
-		System.out.println("Action in Filter: " + action);
-		System.out.println("----------\nuserLogged: " + userLogged + "\n--------");
-		System.out.println("protectedAction: " + protectedAction);
+		System.out.println("----------AutenticFilter----------userLogged: " + userLogged);
 		
 		if ((!userLogged) && protectedAction) {
+			System.out.println("entrou aqui");
 			resp.sendRedirect("reserva?action=LoginForm");
 			return;
 		} 

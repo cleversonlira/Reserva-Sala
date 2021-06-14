@@ -13,7 +13,7 @@
 			<li><a href="#">Painel</a></li>
 			<li><a href="#">Recursos</a></li>
 			<li><a href="#">Salas</a></li>
-			<li><a href="reserva?action=logout">Sair</a></li>
+			<li><a href="reserva?action=Logout">Sair</a></li>
 		</ul>
 	</nav>
 </header>

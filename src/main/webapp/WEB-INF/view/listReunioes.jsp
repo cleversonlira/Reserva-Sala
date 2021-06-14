@@ -29,7 +29,7 @@
 				<td>${reuniao.sala}</td>
 				<td>${reuniao.titulo}</td>
 				<td>
-					<a href="/Reserva-Sala/reserva?action=edit&id=${reuniao.id}" class="btn btn-editar">
+					<a href="/Reserva-Sala/reserva?action=ListReuniao&id=${reuniao.id}" class="btn btn-editar">
 						<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 width="15" height="20" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;"
 							 xml:space="preserve">
@@ -66,8 +66,8 @@
 					                <p modal-description>
 					                   Tem certeza que deseja deletar esta reunião?
 					                </p>
-					                <a class="message-link yes" href="/Reserva-Sala/reserva?action=delete&id=${reuniao.id}">Sim</a>
-					                <a class="message-link not" href="/Reserva-Sala/reserva?action=agendamento">Não</a>            
+					                <a class="message-link yes" href="/Reserva-Sala/reserva?action=Delete&id=${reuniao.id}">Sim</a>
+					                <a class="message-link not" href="/Reserva-Sala/reserva?action=Agendamento">Não</a>            
 					        </div>
 					    </div>
 				    </div>

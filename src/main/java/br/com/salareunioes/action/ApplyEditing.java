@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.salareunioes.dao.ReuniaoDAO;
 import br.com.salareunioes.model.Reuniao;
 
-public class ApplyEditing {
+public class ApplyEditing implements Action {
 
-	public static String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
 		Reuniao reuniao = new Reuniao();
@@ -33,10 +33,7 @@ public class ApplyEditing {
 		} else {
 			updated = false;
 		}
-		
 		req.setAttribute("updated", updated);
-		//req.getRequestDispatcher("agendamento.jsp").forward(req, resp);
-		System.out.println(updated);
 		
 		return "forward:agendamento.jsp";		
 	}
