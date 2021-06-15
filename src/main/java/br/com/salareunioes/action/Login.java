@@ -21,9 +21,9 @@ public class Login implements Action {
 			return "forward:agendamento.jsp";
 		} else {
 			boolean valid = false;
+			session.invalidate();
 			req.setAttribute("valid", valid);
-			session.invalidate();			
-			return "redirect:LoginForm";
+			return "forward:login.jsp";
 		}
 	}
 	
