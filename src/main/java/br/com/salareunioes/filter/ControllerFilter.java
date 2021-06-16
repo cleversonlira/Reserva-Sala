@@ -1,9 +1,12 @@
 package br.com.salareunioes.filter;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Locale;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -27,14 +30,18 @@ import br.com.salareunioes.action.Logout;
 //@WebFilter("/reserva")
 public class ControllerFilter implements Filter {
 
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
+	public void destroy() {}
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
 		String nameAction = request.getParameter("action");
 		String className = "br.com.salareunioes.action." + nameAction;
-		
-		System.out.println("----------ControllerFilter---------- Acão: " + className);
 		
 		
 		String action = "";
@@ -54,12 +61,19 @@ public class ControllerFilter implements Filter {
 			System.out.println("3 - if Error login");
 		} else if(typeAction[0].equals("forward")) {			
 			System.out.println("3 - if forward " + typeAction[1]);
+			
+			resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+			resp.setHeader("Cache-Control","no-cache"); 
+			resp.setHeader("Cache-Control","no-store"); 
+			resp.setHeader("Pragma", "no-cache");
+			resp.setHeader("Expires", "0");
+			
 			req.getRequestDispatcher("WEB-INF/view/" + typeAction[1]).forward(req, resp);
 		} else if(typeAction[0].equals("redirect")) {			
 			System.out.println("3 - if redirect " + typeAction[1]);
 			resp.sendRedirect("reserva?action=" + typeAction[1]);
-			
 		}
+		chain.doFilter(req, resp);
 		
 	}
 

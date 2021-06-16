@@ -3,6 +3,7 @@ package br.com.salareunioes.action;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,6 @@ import br.com.salareunioes.model.Reuniao;
 public class Agendar implements Action {
 
 	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Resolve o problema de caracteres especiais
-		req.setCharacterEncoding("UTF-8");
-		
 		Reuniao reuniao = new Reuniao();
 		boolean created;
 

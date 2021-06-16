@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:useBean id="dao" class="br.com.salareunioes.dao.ReuniaoDAO"/>
+
 <table id="tabela" class="table table-striped" style="width:100%">
 	<thead>
 		<tr class="titulo-coluna">

@@ -1,6 +1,8 @@
 package br.com.salareunioes.filter;
 
 import java.io.IOException;
+import java.util.Locale;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -15,9 +17,16 @@ import javax.servlet.annotation.WebFilter;
 //@WebFilter("/reserva")
 public class MonitoringFilter implements Filter {
 
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {}
+	
+	@Override
+	public void destroy() {}
+	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("----------MonitoringFilter----------");
+		request.setCharacterEncoding("UTF-8");
+		
 		long antes = System.currentTimeMillis();		
 		
 		String action = request.getParameter("action");
