@@ -73,7 +73,6 @@ public class ControllerFilter implements Filter {
 			System.out.println("3 - if redirect " + typeAction[1]);
 			resp.sendRedirect("reserva?action=" + typeAction[1]);
 		}
-		chain.doFilter(req, resp);
 		
 	}
 
