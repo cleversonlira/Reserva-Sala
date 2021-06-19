@@ -23,7 +23,7 @@ public class ListReuniao implements Action {
 		req.setAttribute("sala", reuniao.getSala());
 		req.setAttribute("observacoes", reuniao.getObservacoes());
 		
-		return "forward:editar.jsp";
+		return "forward:agendamento.jsp";
 	}
 
 }

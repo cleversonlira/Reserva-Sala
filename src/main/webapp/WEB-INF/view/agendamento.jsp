@@ -21,12 +21,24 @@
 		${headerContainer}
 		
 	    <section class="agendamento margin-top">
-	        <h1 class="titulo-agendamento">Reservar Sala</h1>
+	    	<c:choose>
+		        <c:when test="${(not empty requestScope.id) and (requestScope.id != null)}">
+		        	<c:set var="h1" value="Alterar Reserva"/>
+		        	<c:set var="value" value="Aplicar Alterações"/>
+		        	<c:set var="action" value="ApplyEditing"/>
+		        </c:when>
+		        <c:otherwise>
+		        	<c:set var="h1" value="Reservar Sala"/>
+		        	<c:set var="value" value="Agendar"/>
+		        	<c:set var="action" value="Agendar"/>
+		        </c:otherwise>
+	        </c:choose>
+	        <h1 class="titulo-agendamento">${h1}</h1>
 	        <c:import var="formAgendamento" url="formAgendamento.jsp"/>
 	        <form action="reserva" method="post">
 	        	${formAgendamento}<!-- Importando o arquivo formAgendamento com os inputs -->
-		        <input type="hidden" name="action" id="action" value="Agendar">
-		        <input class="enviar" type="submit" value="Agendar">
+		        <input type="hidden" name="action" id="action" value="${action}">
+		        <input class="enviar" type="submit" value="${value}">
 			</form>
 	    </section>
 	    
@@ -45,7 +57,6 @@
 	<c:otherwise>
 		<c:redirect url="reserva?action=LoginForm"></c:redirect>
 	</c:otherwise>
-	
 </c:choose>
 </body>
 </html>

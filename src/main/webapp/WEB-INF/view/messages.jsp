@@ -5,18 +5,10 @@
 	<c:when test="${(requestScope.valid == false)}">	
 		<div id="message-login-error" class="message">
 			<div class="message-content-error">
-				<h4 class="message-title">E-mail ou Senha inválidos.</h4>
+				<h4 class="message-title">E-mail ou Senha invï¿½lidos.</h4>
 			</div>
 		</div>	
-		<a id="login" href="/Reserva-Sala/reserva?action=Logout"></a>	
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-login-error").style.visibility = "hidden";		
-			}, 1500);
-			setTimeout( function () {
-				document.getElementById("login").click();
-			}, 1800);
-		</script>	
+		<a id="login" href="/Reserva-Sala/reserva?action=Logout"></a>
 	</c:when>
 </c:choose>
 
@@ -29,14 +21,6 @@
 			</div>
 		</div>
 		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-update-sucess").style.visibility = "hidden";		
-			}, 1350);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>
 	</c:when>
 	<c:when test="${requestScope.updated == false}">	
 		<div id="message-update-error" class="message">
@@ -45,14 +29,6 @@
 			</div>
 		</div>
 		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-update-error").style.visibility = "hidden";		
-			}, 1500);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>	
 	</c:when>
 </c:choose>
 
@@ -65,14 +41,6 @@
 			</div>
 		</div>
 		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-created-sucess").style.visibility = "hidden";		
-			}, 1350);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>
 	</c:when>
 	<c:when test="${requestScope.created == false}">	
 		<div id="message-created-error" class="message">
@@ -81,14 +49,6 @@
 			</div>
 		</div>
 		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-created-error").style.visibility = "hidden";		
-			}, 1500);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>	
 	</c:when>
 </c:choose>
 
@@ -101,29 +61,14 @@
 			</div>
 		</div>
 		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-delete-sucess").style.visibility = "hidden";		
-			}, 1350);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>
 	</c:when>
 	<c:when test="${requestScope.deleted == false}">	
-		<div id="message-created-error" class="message">
+		<div id="message-delete-error" class="message">
 			<div class="message-content-error">
 				<h4 class="message-title">Ocorreu um erro ao remover esta reserva.</h4>
 			</div>
 		</div>
-		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>
-		<script>
-			setTimeout( function () {
-				document.getElementById("message-created-error").style.visibility = "hidden";		
-			}, 1500);
-			setTimeout( function () {
-				document.getElementById("agendamento").click();
-			}, 1800);
-		</script>	
+		<a id="agendamento" href="/Reserva-Sala/reserva?action=Agendamento"></a>	
 	</c:when>
 </c:choose>
+<script src="js/functions.js"></script>

@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <header id="header">
 	<div>
-		<a id="logo" href="#">
+		<a id="logo" href="reserva?action=Agendamento">
 			<img alt="Logo" width="170" height="29" src="img/login-pic.png">
 		</a>
 		<p id="welcome">Bem vindo, ${userLogged.nome}</p>
