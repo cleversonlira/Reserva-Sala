@@ -21,7 +21,8 @@ public class ReuniaoDAO {
 				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE excluido IS NULL");
 				ResultSet rs = stmt.executeQuery();) {
 			
-			while (rs.next()) {
+			int cont = 0; 
+			while (rs.next() && (cont <= 10)) {
 				Reuniao reuniao = new Reuniao();
 				reuniao.setId(rs.getInt("id_reuniao"));
 				reuniao.setInicio(rs.getString("horaInicio").replaceAll(":00.0000000", ""));
@@ -36,6 +37,7 @@ public class ReuniaoDAO {
 				if (!data.isBefore(LocalDate.now())) {
 					reuniao.setData(data);
 					reunioes.add(reuniao);
+					cont++;
 				}
 			}
 
