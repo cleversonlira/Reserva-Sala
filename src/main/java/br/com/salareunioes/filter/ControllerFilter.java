@@ -1,6 +1,7 @@
 package br.com.salareunioes.filter;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Locale;
 
@@ -46,10 +47,10 @@ public class ControllerFilter implements Filter {
 		String action = "";
 		try {
 			System.out.println("\n1 - Entrou no try");
-			Class actionClass = Class.forName(className);
-			Action actionInterface = (Action) actionClass.newInstance();
+			Class<?> actionClass = Class.forName(className);
+			Action actionInterface = (Action) actionClass.getDeclaredConstructor().newInstance();
 			action = actionInterface.executa(req, resp);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
 		}
 		
