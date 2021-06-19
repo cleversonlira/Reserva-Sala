@@ -55,7 +55,7 @@
 	</c:when>
 	
 	<c:otherwise>
-		<c:redirect url="reserva?action=LoginForm"></c:redirect>
+		<c:redirect url="reserva?action=LoginForm"/>
 	</c:otherwise>
 </c:choose>
 </body>

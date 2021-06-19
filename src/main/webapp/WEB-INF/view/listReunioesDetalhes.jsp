@@ -3,14 +3,18 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:useBean id="dao" class="br.com.salareunioes.dao.ReuniaoDAO"/>
 
-<table id="tabela" class="table table-striped" style="width:100%">
+<table id="table-details" class="table table-striped" style="width:100%">
 	<thead>
 		<tr class="titulo-coluna">
+			<th class="details-select-to-remove">Selecionar</th>
 			<th class="details-code">Código</th>
 			<th class="details-date">Data</th>
-			<th class="details-hour">Horario</th>						
+			<th class="details-hour-init">Inicio</th>
+			<th class="details-hour-end">Fim</th>						
 			<th class="details-meeting-room">Sala</th>
 			<th class="details-title">Titulo</th>
+			<th class="details-requester">Solicitante</th>
+			<th class="details-comments">Observações</th>		                
 			<th class="details-edit">Editar</th>
 			<th class="details-remove">Remover</th>
 		</tr>
@@ -18,17 +22,28 @@
 	<tbody>	
 		<c:forEach var="reuniao" items="${dao.list()}">
 			<tr>						
-				<td class="details-code">${reuniao.id}</td>
+				<td class="details-select-to-remove">
+					<input type="checkbox" id="select-to-remove" name="details-select-to-remove">					
+				</td>
+				<td class="details-codev">${reuniao.id}</td>
 				<td class="details-date">																							
 					<fmt:parseDate value="${reuniao.data}" pattern="yyyy-MM-dd" var="dataConvertida" type="date"/>
 					<fmt:formatDate value="${dataConvertida}" type="date" pattern="dd.MM.yyyy"/>					
 				</td>
-				<td class="details-hour">
+				<td class="details-hour-init">
 					<c:out value="${fn:replace(reuniao.inicio,':00.0000000','')}"/>
+				</td>
+				<td class="details-hour-end">
 					<c:out value="${fn:replace(reuniao.fim,':00.0000000','')}"/>
-				</td>							
+				</td>	
 				<td class="details-meeting-room">${reuniao.sala}</td>
 				<td class="details-title">${reuniao.titulo}</td>
+				<td class="details-requester">
+					<c:out value="${reuniao.solicitante}"/>
+				</td>
+				<td class="details-comments">
+					<c:out value="${reuniao.observacoes}"/>
+				</td>
 				<td class="details-edit">
 					<a href="/Reserva-Sala/reserva?action=ListReuniao&id=${reuniao.id}" class="btn btn-editar">
 						<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -68,7 +83,7 @@
 					                   Tem certeza que deseja deletar esta reunião?
 					                </p>
 					                <a class="message-link yes" href="/Reserva-Sala/reserva?action=Delete&id=${reuniao.id}">Sim</a>
-					                <a class="message-link not" href="/Reserva-Sala/reserva?action=Agendamento">Não</a>            
+					                <a class="message-link not" href="/Reserva-Sala/reserva?action=RedirectTo">Não</a>            
 					        </div>
 					    </div>
 				    </div>
