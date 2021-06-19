@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 public class RedirectTo implements Action {
 	@Override
 	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		return "forward:detalhesReunioes.jsp";
+		String page = req.getParameter("page");
+		if(page.equals("panel"))
+			return "redirect:"+page+".jsp";
+		return "forward:"+page+".jsp";
 	}
 }

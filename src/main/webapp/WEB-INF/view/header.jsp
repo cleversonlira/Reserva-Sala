@@ -9,8 +9,8 @@
 	<nav id="nav">	
 	<button id="btn-mobile">Menu</button>
 		<ul id="menu">					
-			<li><a href="reserva?action=RedirectTo">Detalhes das Reuniões</a></li>		
-			<li><a href="#">Painel</a></li>
+			<li><a href="reserva?action=RedirectTo&page=details">Detalhes das Reuniões</a></li>		
+			<li><a href="reserva?action=RedirectTo&page=panel">Painel</a></li>
 			<li><a href="#">Recursos</a></li>
 			<li><a href="#">Salas</a></li>
 			<li><a href="reserva?action=Logout">Sair</a></li>

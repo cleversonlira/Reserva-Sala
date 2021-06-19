@@ -43,7 +43,6 @@ public class ControllerFilter implements Filter {
 		String nameAction = request.getParameter("action");
 		String className = "br.com.salareunioes.action." + nameAction;
 		
-		
 		String action = "";
 		try {
 			System.out.println("\n1 - Entrou no try");
@@ -69,6 +68,8 @@ public class ControllerFilter implements Filter {
 			resp.setHeader("Expires", "0");
 			
 			req.getRequestDispatcher("WEB-INF/view/" + typeAction[1]).forward(req, resp);
+		} else if(typeAction[1].equals("panel.jsp")) {
+			resp.sendRedirect(typeAction[1]);
 		} else if(typeAction[0].equals("redirect")) {			
 			System.out.println("3 - if redirect " + typeAction[1]);
 			resp.sendRedirect("reserva?action=" + typeAction[1]);
