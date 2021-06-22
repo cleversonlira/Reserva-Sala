@@ -70,6 +70,7 @@ li {
     background-color: #e9ecef; 
     margin: 10px;
     padding: 10px;
+    box-shadow: inset 0 0 5px #7d7d7d;
 }
 
 h1 {
@@ -139,6 +140,7 @@ input, select, textarea {
     background-color: #e9ecef;
     margin: 10px;
     padding: 10px;
+    box-shadow: inset 0 0 5px #7d7d7d;
 }
 
 .margin-top {
