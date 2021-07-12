@@ -12,7 +12,7 @@
 			<th class="details-meeting-room">Sala</th>
 			<th class="details-title">Titulo</th>
 			<th class="details-edit">Editar</th>
-			<th class="details-remove">Remover</th>
+			<th class="details-remove">Excluir</th>
 		</tr>
 	</thead>			        
 	<tbody>	

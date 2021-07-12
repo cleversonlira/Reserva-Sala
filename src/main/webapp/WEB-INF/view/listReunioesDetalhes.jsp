@@ -16,7 +16,7 @@
 			<th class="details-requester">Solicitante</th>
 			<th class="details-comments">Observações</th>		                
 			<th class="details-edit">Editar</th>
-			<th class="details-remove">Remover</th>
+			<th class="details-remove">Excluir</th>
 		</tr>
 	</thead>			        
 	<tbody>	

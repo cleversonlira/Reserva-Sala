@@ -5,7 +5,7 @@
 	<c:when test="${(requestScope.valid == false)}">	
 		<div id="message-login-error" class="message">
 			<div class="message-content-error">
-				<h4 class="message-title">E-mail ou Senha invï¿½lidos.</h4>
+				<h4 class="message-title">E-mail ou Senha inválidos.</h4>
 			</div>
 		</div>	
 		<a id="login" href="/Reserva-Sala/reserva?action=Logout"></a>
