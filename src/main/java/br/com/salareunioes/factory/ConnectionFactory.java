@@ -9,12 +9,12 @@ public class ConnectionFactory {
 	public Connection getConnection() {		
 		try {
 			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
 
 	        /* Configura os parâmetros da conexão */
-	        String url = "jdbc:sqlserver://192.168.92.105:1433;databaseName=Reunioes";
-	        String username = "protheus"; 
-	        String password = "12345678";
+	        String url = "jdbc:mysql://127.0.0.1:3306/Reserva";
+	        String username = "root"; 
+	        String password = "";
 			
 			return DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException e) {            
