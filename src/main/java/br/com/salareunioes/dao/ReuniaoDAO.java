@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
 
 import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.Reuniao;
@@ -14,14 +16,13 @@ import br.com.salareunioes.model.Reuniao;
 public class ReuniaoDAO {
 
 	// Metodo que busca todas as reunioes no banco e retorna uma lista de reunioes
-	public ArrayList<Reuniao> list() {
-		ArrayList<Reuniao> reunioes = new ArrayList<Reuniao>();
+	public List<Reuniao> list() {
+		List<Reuniao> reunioes = new ArrayList<>();
 
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE excluido IS NULL");
 				ResultSet rs = stmt.executeQuery();) {
-			
-			int cont = 0; 
+			int cont = 0;
 			while (rs.next() && (cont <= 10)) {
 				Reuniao reuniao = new Reuniao();
 				reuniao.setId(rs.getInt("id_reuniao"));
@@ -47,14 +48,13 @@ public class ReuniaoDAO {
 		return reunioes;
 	}
 
-	//Metodo sem retorno, que insere uma Reuniao no banco.
+	// Metodo sem retorno, que insere uma Reuniao no banco.
 	public boolean insert(Reuniao reuniao) {
 		boolean insert = false;
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("INSERT INTO "
 						+ "Reuniao(titulo, solicitante, dataReuniao, horaInicio, horaFim, organizador, id_sala, observacoes)"
-						+ "VALUES(?,?,?,?,?,?,?,?)");
-		) {
+						+ "VALUES(?,?,?,?,?,?,?,?)");) {
 			stmt.setString(1, reuniao.getTitulo());
 			stmt.setString(2, reuniao.getSolicitante());
 			stmt.setDate(3, Date.valueOf(reuniao.getData()));
@@ -63,7 +63,7 @@ public class ReuniaoDAO {
 			stmt.setString(6, reuniao.getOrganizador());
 			stmt.setInt(7, reuniao.getSala());
 			stmt.setString(8, reuniao.getObservacoes());
-			
+
 			stmt.execute();
 			insert = true;
 		} catch (SQLException e) {
@@ -72,20 +72,17 @@ public class ReuniaoDAO {
 		return insert;
 	}
 
-	//Falta implementar
+	// Falta implementar
 	public boolean delete(Reuniao reuniao) {
 		reuniao.setExcluido(true);
 		boolean delete = false;
-		try 
-		(Connection con = new ConnectionFactory().getConnection();
+		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con
-						.prepareStatement("UPDATE Reuniao " + "SET excluido=? " + "WHERE id_reuniao = ?");
-		) 
-		{
+						.prepareStatement("UPDATE Reuniao " + "SET excluido=? " + "WHERE id_reuniao = ?");) {
 			stmt.setBoolean(1, reuniao.isExcluido());
 			stmt.setInt(2, reuniao.getId());
 			stmt.executeUpdate();
-			
+
 			delete = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,16 +90,14 @@ public class ReuniaoDAO {
 		return delete;
 	}
 
-	//Metodo de edicao de Reuniao, recebeo parametro Reuniao e atualiza a reuniao que contém o mesmo ID lá no banco.
+	// Metodo de edicao de Reuniao, recebeo parametro Reuniao e atualiza a reuniao
+	// que contém o mesmo ID lá no banco.
 	public boolean update(Reuniao reuniao) {
 		boolean updated = false;
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("UPDATE Reuniao "
 						+ "SET titulo = ?, solicitante = ?, dataReuniao = ?, horaInicio = ?, horaFim = ?, "
-						+ "organizador = ?, id_sala = ?, observacoes = ? "
-						+ "WHERE id_reuniao = ?");
-			) 
-		{
+						+ "organizador = ?, id_sala = ?, observacoes = ? " + "WHERE id_reuniao = ?");) {
 			stmt.setString(1, reuniao.getTitulo());
 			stmt.setString(2, reuniao.getSolicitante());
 			stmt.setDate(3, Date.valueOf(reuniao.getData()));
@@ -112,9 +107,9 @@ public class ReuniaoDAO {
 			stmt.setInt(7, reuniao.getSala());
 			stmt.setString(8, reuniao.getObservacoes());
 			stmt.setInt(9, reuniao.getId());
-			
+
 			stmt.executeUpdate();
-			
+
 			updated = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,15 +117,14 @@ public class ReuniaoDAO {
 		return updated;
 	}
 
-	//Metodo que seleciona apenas uma reuniao pelo ID, para que possa ser editada. E retorna a reuniao encontrada.
+	// Metodo que seleciona apenas uma reuniao pelo ID, para que possa ser editada.
+	// E retorna a reuniao encontrada.
 	public Reuniao selectById(Integer id) {
 		Reuniao reuniao = new Reuniao();
 		try (Connection con = new ConnectionFactory().getConnection();
-				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE id_reuniao = ?");				
-			)
-		{			
+				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE id_reuniao = ?");) {
 			stmt.setInt(1, id);
-			 ResultSet rs = stmt.executeQuery();
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				reuniao.setId(rs.getInt("id_reuniao"));
 				reuniao.setTitulo(rs.getString("titulo"));
