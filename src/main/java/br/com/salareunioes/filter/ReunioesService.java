@@ -1,6 +1,7 @@
 package br.com.salareunioes.filter;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class ReunioesService extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		List<Reuniao> reunioes = new ReuniaoDAO().list();
+		Collection<Reuniao> reunioes = new ReuniaoDAO().list();
 		
 		String type = request.getParameter("type");
 		

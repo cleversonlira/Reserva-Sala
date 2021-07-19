@@ -24,8 +24,8 @@
 					<fmt:formatDate value="${dataConvertida}" type="date" pattern="dd.MM.yyyy"/>					
 				</td>
 				<td class="details-hour">
-					<c:out value="${fn:replace(reuniao.inicio,':00.0000000','')}"/>
-					<c:out value="${fn:replace(reuniao.fim,':00.0000000','')}"/>
+					<c:out value="${reuniao.inicio}"/>
+					<c:out value="${reuniao.fim}"/>
 				</td>							
 				<td class="details-meeting-room">${reuniao.sala}</td>
 				<td class="details-title">${reuniao.titulo}</td>

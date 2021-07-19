@@ -108,4 +108,16 @@ public class Reuniao {
 				+ ", organizador=" + organizador + ", sala=" + sala + ", excluido=" + excluido + "]\n";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
+		result = prime * result + ((fim == null) ? 0 : fim.hashCode());
+		result = prime * result + ((inicio == null) ? 0 : inicio.hashCode());
+		result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+		return result;
+	}
+	
+	
 }

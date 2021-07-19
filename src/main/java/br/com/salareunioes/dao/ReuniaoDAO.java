@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
+import java.util.Collection;
+import java.util.HashSet;
 
 import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.Reuniao;
@@ -16,8 +16,8 @@ import br.com.salareunioes.model.Reuniao;
 public class ReuniaoDAO {
 
 	// Metodo que busca todas as reunioes no banco e retorna uma lista de reunioes
-	public List<Reuniao> list() {
-		List<Reuniao> reunioes = new ArrayList<>();
+	public Collection<Reuniao> list() {
+		Collection<Reuniao> reunioes = new ArrayList<>();
 
 		try (Connection con = new ConnectionFactory().getConnection();
 				PreparedStatement stmt = con.prepareStatement("SELECT * FROM Reuniao WHERE excluido IS NULL");
@@ -26,20 +26,20 @@ public class ReuniaoDAO {
 			while (rs.next() && (cont <= 10)) {
 				Reuniao reuniao = new Reuniao();
 				reuniao.setId(rs.getInt("id_reuniao"));
-				reuniao.setInicio(rs.getString("horaInicio").replaceAll(":00.0000000", ""));
-				reuniao.setFim(rs.getString("horaFim").replaceAll(":00.0000000", ""));
+				reuniao.setInicio(rs.getString("horaInicio").substring(0, 5));
+				reuniao.setFim(rs.getString("horaFim").substring(0, 5));
 				reuniao.setTitulo(rs.getString("titulo"));
 				reuniao.setSala(rs.getInt("id_sala"));
 				reuniao.setSolicitante(rs.getString("solicitante"));
 				reuniao.setObservacoes(rs.getString("observacoes"));
 
 				LocalDate data = LocalDate.parse(rs.getString("dataReuniao"));
+				reuniao.setData(data);
 
-				if (!data.isBefore(LocalDate.now())) {
-					reuniao.setData(data);
-					reunioes.add(reuniao);
-					cont++;
-				}
+				reunioes.add(reuniao);
+				cont++;
+//				if (!data.isBefore(LocalDate.now())) {
+//				}
 			}
 
 		} catch (Exception e) {
