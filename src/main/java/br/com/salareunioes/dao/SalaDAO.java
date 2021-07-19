@@ -4,14 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.salareunioes.factory.ConnectionFactory;
 import br.com.salareunioes.model.Sala;
 
 public class SalaDAO {
 
-	public ArrayList<Sala> listar() {
-		ArrayList<Sala> salas = new ArrayList<Sala>();		
+	public Map<Integer, String>  listar() {
+		Map<Integer, String> salas = new HashMap<Integer, String>();		
 		
 		try (
 				Connection con = new ConnectionFactory().getConnection();
@@ -24,7 +26,7 @@ public class SalaDAO {
 				sala.setNome(rs.getString("nomeSala"));
 				sala.setId(rs.getInt("id_sala"));
 				
-				salas.add(sala);
+				salas.put(sala.getId(), sala.getNome());
 			}
 		} catch (SQLException e) {			
 			e.printStackTrace();

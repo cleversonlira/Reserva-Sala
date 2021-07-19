@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="sala" class="br.com.salareunioes.dao.SalaDAO"/>
 
 	<input type="hidden" name="id" id="id" readonly value="${requestScope.id}">
 	
@@ -37,18 +38,11 @@
 				</c:otherwise>
 			</c:choose>
 		</option>
-	   	<optgroup label="Com Videoconferencia">
-	        <option value="1">Sala 1</option>                    
-	        <option value="3">Sala 3</option>
-	        <option value="4">Sala 4</option>
-	        <option value="5">Sala 5</option>
-	        <option value="8">Sala 8</option>
-	    </optgroup>
-	    <optgroup label="Sem Videoconferencia">
-	        <option value="2">Sala 2</option>            
-	        <option value="6">Sala 6</option>
-	        <option value="7">Sala 7</option>
-	    </optgroup>
+		<c:forEach var="sala" items="${sala.listar().entrySet()}">
+			<option value="${sala.key}">
+				${sala.value}
+			</option>
+		</c:forEach>
 	</select>
 	
 	<label for="observacoes">Observações:</label>
